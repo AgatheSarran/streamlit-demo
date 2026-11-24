@@ -3,7 +3,7 @@ import requests
 import numpy as np
 
 st.set_page_config(page_title="Hello", page_icon=":sunny:")
-st.write(f"This is a basic secret: {st.secrets["my_secret"]}")
+st.write(f"This is a basic secret: {st.secrets["api_keys"]["my_secret"]}")
 
 
 query = st.text_input("Search a GIF")

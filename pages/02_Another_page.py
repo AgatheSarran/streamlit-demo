@@ -1,2 +1,21 @@
 import streamlit as st
-st.secrets["my_secret"]
+import requests
+import numpy as np
+
+st.set_page_config(page_title="Hello", page_icon=":sunny:")
+st.write(f"This is a basic secret: {st.secrets["my_secret"]}")
+
+
+query = st.text_input("Search a GIF")
+url = "https://api.giphy.com/v1/gifs/search"
+params={"api_key": st.secrets.api_key, "q": query, "limit": 10}
+response = requests.get(url= url, params=params).json()
+
+while not query:
+    st.stop()
+
+gif_url = response['data'][np.random.randint(0,5)]['embed_url']
+st.write(
+    f'<iframe src="{gif_url}" width="580" height="340">', #480, 240
+    unsafe_allow_html=True
+)

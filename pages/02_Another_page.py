@@ -3,12 +3,12 @@ import requests
 import numpy as np
 
 st.set_page_config(page_title="Hello", page_icon=":sunny:")
-st.write(f"This is a basic secret: {st.secrets["api_keys"]["my_secret"]}")
+st.write(f"This is a basic secret: {st.secrets["my_secret"]}")
 
 
 query = st.text_input("Search a GIF")
 url = "https://api.giphy.com/v1/gifs/search"
-params={"api_key": st.secrets.api_key, "q": query, "limit": 10}
+params={"api_key": st.secrets["api_keys"]["api_key"], "q": query, "limit": 10}
 response = requests.get(url= url, params=params).json()
 
 while not query:
